@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GITerest- Log In</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link rel="shortcut icon" href="/static/css/icon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="/static/css/home_css.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha38
+                           4-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity=
+               "sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/static/css/animate.css">
+</head>
+
+<body>
+
+<div class="container" style="text-align: center; width: 40%; margin-top: 0px">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    {% for message in messages %}
+		  <div class="alert alert-danger">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			{{message}}
+		  </div>
+		{% endfor %}
+	  {% endif %}
+	{% endwith %}
+	</div>
+<script> $(document).ready(function(){
+
+    $(".error").addClass("animated shake")});
+
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 header">
+        <h1 style="font-family: 'Ubuntu'; font-size: 19pt">Find people with similar interests around you</h1>
+    </div>
+    <div class="col-md-4 logo">
+        <a href="{{ url_for('home') }}">
+        <img class="image-responsive" src="http://www.designmantic.com/create_thumb?id=144&company=GITerest&slogan=" alt="GITerest" style="width:304px;height:228px;">
+        </a>
+    </div>
+    <div class="col-md-4 header1" style="font-family: 'Ubuntu'; font-size: 12pt">
+        <ul>
+            <li>Post what you are learning</li>
+            <li>Find people to learn together</li>
+            <li>Also Find people you can learn from</li>
+        </ul>
+    </div>
+    </div>
+
+    <div class="signin">
+        {% if error %}
+        <p class="error">
+            {{ error }}
+        </p>
+        {% endif %}
+        <form method="post" action="{{ url_for('signin_page') }}">
+            <input type="email" name="emailsignin" placeholder="Email" size="43" style="font-family: 'Ubuntu';
+            font-size: 12pt;height: 30px; width: 300px" required>
+            <input type="password" name="passwordsignin" placeholder="Password" size="43"
+                   style="font-family: 'Ubuntu';font-size: 12pt;height: 30px; width: 250px" required>
+            <button type="submit" style="font-family: 'Ubuntu'; color: white; font-size: 12pt;height: 30px;
+            width: 100px">Sign in</button>
+        </form>
+    </div>
+
+<div class="signup" style="font-family: 'Ubuntu'">
+    <h2 class="header2">
+    Sign Up!
+    </h2>
+
+   {% from "_formhelpers.html" import render_field %}
+<form method=post action="{{ url_for('signUp') }}">
+  <dl>
+    {{ render_field(form.username) }}<br><br>
+    {{ render_field(form.email) }}<br><br>
+    {{ render_field(form.password) }}<br><br>
+    {{ render_field(form.confirm) }}
+  </dl><br>
+   <button class="btn" type="submit" style=" color: white; font-size: 12pt;height: 35px;
+    width: 120px">Sign Up</button>
+</form>
+
+    </div>
+
+
+<!--
+<script> $(document).ready(function(){
+    $("button").addClass("animated bounce");});
+    function checkForm(form){
+        if(form.password1.value != form.password2.value){
+            (alert("Make sure you have entered the same password"));
+            form.password2.focus();
+            return false;
+        }
+    }
+</script>
+-->
+
+</div>
+
+</body>
+
+</html>

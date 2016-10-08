@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Basic Header</title>
+
+	<link rel="stylesheet" href="/static/css/header_css.css">
+	<link rel="stylesheet" href="/static/css/demo.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
+
+    <title></title>
+</head>
+<body class="fixed">
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1><a href="{{ url_for('home1') }}">Giterest</a></h1>
+
+        <div class="flashed_messages container col-md-4" style="text-align: center; width: 40%;
+                                                        margin-top: -5px; margin-left: 280px;">
+
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-danger">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span></button>
+                    {{message}}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+        </div>
+
+		<nav>
+			<a href="{{ url_for('home1') }}"><span class="glyphicon glyphicon-home"></span></a>
+			<a href="{{ url_for('select_tags') }}"><span class="glyphicon glyphicon-heart"></span></a>
+            <a style="margin-right: 40px" href="#"><span class="glyphicon glyphicon-cog"></span></a>
+
+            <a href="{{ url_for('log_out') }}"><span class="glyphicon glyphicon-log-out"></span></a>
+		</nav>
+
+	</div>
+
+
+</header>
+
+
+
+
+<!--
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+	$(document).ready(function(){
+
+		var showHeaderAt = 130;
+
+		var win = $(window),
+				body = $('body');
+
+
+		if(win.width() > 600){
+
+
+
+			win.on('scroll', function(e){
+
+				if(win.scrollTop() > showHeaderAt) {
+					body.addClass('fixed');
+				}
+				else {
+					body.removeClass('fixed');
+				}
+			});
+
+		}
+
+	});
+	-->
+<script>
+
+    $('a').on("click",function(){
+        $(this).addClass('selected');
+        });
+
+</script>
+
+{% block body %}{% endblock %}
+
+</body>
+</html>

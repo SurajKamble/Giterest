@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to GITerest</title>
+    <link rel="shortcut icon" href="/static/css/icon.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/select_tags_css.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/animate.css">
+</head>
+{% extends 'header1.html' %}
+{% block body %}
+<body>
+
+    <div class="whole1">
+<div class="whole">
+    <br><br>
+    <p id="header2">
+        Let's see what you are interested in:
+    </p>
+
+
+<form method="post" action="{{ url_for('select_tags') }}">
+    <div class="done" style="float: right; margin-right: 10px;">
+    <button name="done_btn" id="done_btn" type="submit" onclick="selectedTags()" class="btn btn-info btn-md">
+          <span class="glyphicon glyphicon-chevron-right"></span> Next
+        </button>
+        <input type="hidden" name="lat" id="lat" value="">
+        <input type="hidden" name="lon" id="lon" value="">
+        </div>
+</form>
+
+  <ul class="nav nav-tabs bar tag_head_bar">
+
+      {% for tag_head in tags.keys() %}
+    <li><a class="tag_head" data-toggle="tab" href="#{{ tag_head }}">{{ tag_head }}</a></li>
+        {% endfor %}
+  </ul>
+
+    <form method="post" name="tag_form" >
+  <div class="tab-content one">
+  {% for tag_head in tags %}
+    <div id="{{ tag_head }}" class="tab-pane fade in ">
+      <div class="jumbotron jumb">
+          {% for tag_data in tags[tag_head] %}
+          <button name="tag_btn" type="button" class="btn btn-sm tags" id="{{ tag_data[1] }}" value="{{ tag_data[0] }}"
+                       >
+                            <span class="glyphicon glyphicon-plus"></span> {{ tag_data[1] }}</button>
+          {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+   </form>
+    <!--
+    Add here one submit button for the form, to send all the clicked tags to the addTags method.
+    Make two hidden input form fields to store the x and y values. +3 and -3 on the
+        third decimal places of lat and lon.
+    -->
+
+<script type="text/javascript" language="JavaScript">
+var tags_selected = [];
+        function selectedTags(){
+            var clicked_tags = document.getElementsByClassName("btn_clicked");
+            for(var i=0; i<clicked_tags.length; i++){
+                tags_selected.push(clicked_tags[i].value);
+            }
+            document.getElementById("done_btn").value = tags_selected;
+        }
+
+$('button').on("click",function(){
+  $(this).toggleClass('btn_clicked');
+  });
+
+var x = document.getElementById("lat");
+var y = document.getElementById("lon");
+{% if not locationUpdated %}
+$(document).ready(function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    function showPosition(position) {
+    x.value = position.coords.latitude;
+    y.value = position.coords.longitude;
+        $.post({
+    url: "/select_tags",
+    type: "POST",
+    data: JSON.stringify({lat: x.value, lon: y.value}),
+    contentType: "application/json; charset=utf-8",
+    success: function(dat) { console.log(dat+"ssss"); }
+});
+}
+
+});
+{% endif %}
+</script>
+
+
+</div>
+
+{% endblock %}
+</div>
+</body>
+</html>

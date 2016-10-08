@@ -1,0 +1,50 @@
+.welcome_header{
+    padding-top: 10px;
+    color: seagreen;
+    text-align: center;
+}
+
+#header2{
+    margin-left: 20px;
+    color: #dd4b39;
+    font-size: 20px;
+}
+.jumb{
+    height: 450px;
+    text-align: center;
+    margin: 20px 100px 20px 50px;
+}
+
+.tags{
+    margin: 15px 10px 0px 10px;
+    background-color: #808080;
+}
+p{
+    margin-top: 0;
+    font-size: 20pt;
+}
+
+
+.whole{
+    box-shadow: 0 10px 10px 11px black;
+    padding-top: 20px;
+    height: 750px;
+    background-color: white;
+    margin: 0 90px 0 90px;
+}
+
+.btn_clicked{
+    background-color:indianred;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+    outline: 0;
+}
+
+button:visited,
+button:active
+{
+    background-color: #b8b0d7;
+    border: none;
+    outline: none;
+}

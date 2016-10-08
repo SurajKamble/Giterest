@@ -1,0 +1,44 @@
+.whole{
+    box-shadow: 0 10px 10px 11px black;
+    height: 1000px;
+    background-color: white;
+}
+
+.suggestion_col{
+    color: white;
+    padding: 80px;
+    position: fixed;
+}
+
+.follow_btn{
+    margin-left: 30px;
+    background-color: cornflowerblue;
+}
+
+.suggested_user{
+    color: white;
+    font-size: 15px;
+    padding-left: 30px;
+}
+
+.suggested_user:hover{
+    color: cornflowerblue;
+}
+
+.user_suggestion .interests{
+    color: #cccccc;
+    padding-left: 33px;
+    font-size: 12px;
+}
+
+.interests:hover{
+    opacity: 1;
+    color: grey;
+    text-decoration: none;
+}
+
+.user_suggestion{
+    background-color: transparent;
+    margin: 0 0 20px 0;
+    padding: 0 0 5px 10px;
+}

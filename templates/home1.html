@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to GITerest</title>
+    <link rel="shortcut icon" href="/static/css/icon.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/home1_css.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/animate.css">
+</head>
+{% extends 'header.html' %}
+{% block body %}
+<body>
+    <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 whole">
+    </div>
+    <div class="col-md-2 suggestion_col">
+{% for user in users_nearby %}
+    <div class="user_suggestion">
+        <a href="#" class="suggested_user">{{ user[1] }}</a><br>
+        <a class="interests" href="#">Common Interests</a>
+
+        <button name="follow_btn" type="button" class="btn btn-sm follow_btn" id="follow_btn" value="{{ user[2] }}">
+                            <span class="glyphicon glyphicon-plus"></span> Follow </button>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+</div>
+</body>
+
+</html>
